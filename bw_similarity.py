@@ -1,4 +1,5 @@
 from PIL import Image
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -72,10 +73,13 @@ def error_diffusion_similarity(img1_path, img2_path):
     plt.show()
     return similarity
 
-# Example usage
-img1_path = 'error_diff1.png'  # Replace with your first image path
-img2_path = 'error_diff2.png'  # Replace with your second image path
-error_diffusion_similarity(img1_path, img2_path)
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python bw_similarity.py <input_image1_path> <input_image1_path>")
+        sys.exit(1)
+    input_image1_path = sys.argv[1]
+    input_image2_path = sys.argv[2]
+    error_diffusion_similarity(input_image1_path, input_image2_path) 
 
 
     

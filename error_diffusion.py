@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import sys
 from PIL import Image
 from matplotlib import pyplot as plt
 
@@ -44,6 +45,10 @@ def seq_error_diffusion(image_path, output_path, threshold=128):
     dithered_image = Image.fromarray(dithered_img)
     dithered_image.save(output_path)
 
-input_image_path = 'image/grayscale_image/grayscale_airport_1024.png'  # Replace with your input image path
-output_image_path = 'error_diff.png'  # Replace with your desired output image path
-seq_error_diffusion(input_image_path, output_image_path)    
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python error_diffusion.py <input_image_path> <output_image_path>")
+        sys.exit(1)
+    input_image_path = sys.argv[1]
+    output_image_path = sys.argv[2]
+    seq_error_diffusion(input_image_path, output_image_path)  
