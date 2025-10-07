@@ -15,7 +15,7 @@ def seq_error_diffusion(image_path, output_path, threshold=128):
     """
     # Load image and convert to grayscale
     img = Image.open(image_path).convert('L')
-    img_array = np.array(img)
+    img_array = np.array(img, dtype=np.float32)
 
     # Initialize output array
     dithered_img = np.zeros_like(img_array)
@@ -42,7 +42,7 @@ def seq_error_diffusion(image_path, output_path, threshold=128):
                 img_array[y + 1, x + 1] += math.floor(quant_error * 1 / 16)
 
     # Save the dithered image
-    dithered_image = Image.fromarray(dithered_img)
+    dithered_image = Image.fromarray(dithered_img.astype(np.uint8))
     dithered_image.save(output_path)
 
 if __name__ == "__main__":
