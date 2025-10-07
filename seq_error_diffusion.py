@@ -1,4 +1,5 @@
 import numpy as np
+import math
 from PIL import Image
 from matplotlib import pyplot as plt
 
@@ -31,13 +32,13 @@ def seq_error_diffusion(image_path, output_path, threshold=128):
 
             # Distribute the quantization error to neighboring pixels
             if x + 1 < width:
-                img_array[y, x + 1] += quant_error * 7 / 16
+                img_array[y, x + 1] += math.floor(quant_error * 7 / 16)
             if x - 1 >= 0 and y + 1 < height:
-                img_array[y + 1, x - 1] += quant_error * 3 / 16
+                img_array[y + 1, x - 1] += math.floor(quant_error * 3 / 16)
             if y + 1 < height:
-                img_array[y + 1, x] += quant_error * 5 / 16
+                img_array[y + 1, x] += math.floor(quant_error * 5 / 16)
             if x + 1 < width and y + 1 < height:
-                img_array[y + 1, x + 1] += quant_error * 1 / 16
+                img_array[y + 1, x + 1] += math.floor(quant_error * 1 / 16)
 
     # Save the dithered image
     dithered_image = Image.fromarray(dithered_img)
