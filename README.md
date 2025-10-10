@@ -1,4 +1,5 @@
 # Manual: how to use these code?
+guide for VS code
 
 ## Convert grayscale image to 1-bit black & white image using `error_diffusion.py`
 
